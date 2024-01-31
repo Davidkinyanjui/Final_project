@@ -30,7 +30,7 @@
 
 # 📖 A Simple Coffee shop  <a name="about-project"></a>
 
-Coffee shop app revolutionizes your caffeine experience by enabling customers to effortlessly order their favorite brews through a seamless mobile interface. Elevating convenience, it will integrate Uber delivery services to ensure swift and efficient coffee deliveries, bringing the rich aroma of freshly brewed coffee directly to the customers' doorstep.
+Coffee shop app is an app that will revolutionizes your caffeine experience by enabling customers to effortlessly order their favorite brews through a seamless mobile interface. Elevating convenience, it will integrate Uber delivery services to ensure swift and efficient coffee deliveries, bringing the rich aroma of freshly brewed coffee directly to the customers' doorstep.
 
 ## 🛠 Built With <a name="built-with"></a>
 
