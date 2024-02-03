@@ -5,9 +5,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -37,10 +39,10 @@ fun BottomNavigationMenu(selectedItem: BottomNavigationItem, navController: NavC
     Row(
         modifier = Modifier
             .fillMaxWidth()
-            .wrapContentHeight()
-            .padding(top = 4.dp)
-            .background(color = Color(0xFFF5E1CB))
-    ) {
+            .height(65.dp)
+            .padding(top = 10.dp)
+            .background(color = Color(0xFF3E2723), shape = RoundedCornerShape(2.dp))
+    )    {
         /**
          * Renders the bottom navigation items as a row of images.
          *
@@ -52,13 +54,13 @@ fun BottomNavigationMenu(selectedItem: BottomNavigationItem, navController: NavC
                 painter = painterResource(id = item.icon),
                 contentDescription = null,
                 modifier = Modifier
-                    .size(40.dp)
-                    .padding(5.dp)
+                    .size(45.dp)
                     .weight(1f)
+                    .padding(top = 13.dp)// Adjust the vertical padding as needed
                     .clickable {
                         navigateTo(navController, item.navDestination)
                     },
-                colorFilter = if (item == selectedItem) ColorFilter.tint(color = Color(0xFF3E2723))
+                colorFilter = if (item == selectedItem) ColorFilter.tint(color = Color(0xFFF5E1CB))
                 else ColorFilter.tint(color = Color(0xFF945C22))
             )
         }

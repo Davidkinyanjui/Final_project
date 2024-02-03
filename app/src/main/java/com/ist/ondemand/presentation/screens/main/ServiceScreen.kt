@@ -1,8 +1,11 @@
 package com.ist.ondemand.presentation.screens.main
 
 import android.icu.util.Calendar
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -13,18 +16,21 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Clear
 import androidx.compose.material3.*
-import androidx.compose.material3.icons.Icons
-import androidx.compose.material3.icons.filled.Clear
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
@@ -36,15 +42,18 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.ist.ondemand.R
+import com.ist.ondemand.presentation.MainViewModel
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun ServiceScreen(navController: NavController) {
+fun ServiceScreen(navController: NavController , vm: MainViewModel) {
     var searchQuery by remember { mutableStateOf("") }
     val coffees = listOf("Espresso", "Latte", "Cappuccino", "Mocha", "Americano")
     var isSearchActive by remember { mutableStateOf(false) }
     var selectedCategory by remember { mutableStateOf("All") }
     var filteredCoffees by remember { mutableStateOf(coffees) }
+
+    val isSearchIconVisible by rememberUpdatedState(newValue = searchQuery.isEmpty())
 
     val currentTime = Calendar.getInstance().get(Calendar.HOUR_OF_DAY)
     val greeting = when {
@@ -101,27 +110,51 @@ fun ServiceScreen(navController: NavController) {
                 .fillMaxWidth()
                 .padding(16.dp)
         ) {
-            BasicTextField(
-                value = searchQuery,
-                onValueChange = {
-                    searchQuery = it
-                    filteredCoffees = coffees.filter { coffee ->
-                        coffee.contains(searchQuery, ignoreCase = true)
-                    }
-                },
-                keyboardOptions = KeyboardOptions.Default.copy(
-                    imeAction = ImeAction.Done
-                ),
-                keyboardActions = KeyboardActions(onDone = {
-                    keyboardController?.hide()
-                    isSearchActive = false
-                }),
+            Box(
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable {
                         isSearchActive = true
                     }
-            )
+            ) {
+                BasicTextField(
+                    value = searchQuery,
+                    onValueChange = {
+                        searchQuery = it
+                        filteredCoffees = coffees.filter { coffee ->
+                            coffee.contains(searchQuery, ignoreCase = true)
+                        }
+                    },
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        imeAction = ImeAction.Done
+                    ),
+                    keyboardActions = KeyboardActions(onDone = {
+                        keyboardController?.hide()
+                        isSearchActive = false
+                    }),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .border(
+                            width = 2.dp,
+                            color = Color(0xFF3E2723), // Coffee brown color
+                            shape = RoundedCornerShape(33.dp)
+                        )
+                        .padding(8.dp)
+                        .size(30.dp),
+                )
+
+                // Add search icon inside the search area
+                Image(
+                    painter = painterResource(id = R.drawable.ic_search), // Replace with your search icon resource
+                    contentDescription = null, // Provide a descriptive content description
+                    modifier = Modifier
+                        .padding(8.dp)
+                        .size(28.dp),
+                    colorFilter = ColorFilter.tint(color = Color(0xFF3E2723)) // Set the desired color
+                )
+
+            }
+
 
             if (isSearchActive && searchQuery.isNotEmpty()) {
                 Icon(
@@ -139,12 +172,17 @@ fun ServiceScreen(navController: NavController) {
 
         // Filter buttons for Categories
         Spacer(modifier = Modifier.height(16.dp))
-        Text("Categories", style = MaterialTheme.typography.subtitle1)
+        Text("Categories", style = MaterialTheme.typography.titleSmall.copy(
+            fontSize = 28.sp,
+            fontWeight = FontWeight.Bold,
+            color = Color(0xFF3E2723)
+        ))
+
 
         Row(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp)
+                .padding(vertical = 10.dp)
         ) {
             CoffeeCategoryFilterButton(
                 category = "All",
@@ -169,17 +207,74 @@ fun ServiceScreen(navController: NavController) {
         }
 
         // Display filtered coffees
-        Spacer(modifier = Modifier.height(16.dp))
+        // Display filtered coffees
+        Spacer(modifier = Modifier.height(18.dp))
         Text("Results:")
-        Spacer(modifier = Modifier.height(8.dp))
+        Spacer(modifier = Modifier.height(10.dp))
 
         if (filteredCoffees.isEmpty()) {
             Text("No results found.")
         } else {
             filteredCoffees.forEach { coffee ->
-                Text(coffee)
+                Card(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(8.dp),
+                    elevation = 8.dp
+                ) {
+                    Column(
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .fillMaxWidth()
+                    ) {
+                        // Image at the top
+                        Image(
+                            painter = painterResource(R.drawable.coffee_image), // Replace with your coffee image resource
+                            contentDescription = "Coffee Image",
+                            modifier = Modifier
+                                .height(120.dp)
+                                .fillMaxWidth()
+                                .clip(shape = RoundedCornerShape(8.dp))
+                                .background(MaterialTheme.colorScheme.background)
+                        )
+
+                        Spacer(modifier = Modifier.height(8.dp))
+
+                        // Name of the coffee
+                        Text(coffee.name, style = MaterialTheme.typography.h6)
+
+                        Spacer(modifier = Modifier.height(4.dp))
+
+                        // Amount of the coffee
+                        Text("Amount: ${coffee.amount}", style = MaterialTheme.typography.body2)
+
+                        Spacer(modifier = Modifier.weight(1f))
+
+                        // "+" button to add to the cart
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(8.dp),
+                            horizontalArrangement = Arrangement.End
+                        ) {
+                            Button(
+                                onClick = { /* Handle button click */ },
+                                modifier = Modifier.padding(8.dp)
+                            ) {
+                                Row(
+                                    verticalAlignment = Alignment.CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                ) {
+                                    Icon(imageVector = Icons.Default.Add, contentDescription = "Add to Cart")
+                                    Text("Add to Cart")
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
+
 
         BottomNavigationMenu(
             selectedItem = BottomNavigationItem.SERVICES,
@@ -191,8 +286,8 @@ fun ServiceScreen(navController: NavController) {
 @Composable
 fun CoffeeCategoryFilterButton(category: String, selectedCategory: String, onClick: () -> Unit) {
     val isSelected = category == selectedCategory
-    val backgroundColor = if (isSelected) Color(0xFF8B4513) else Color.Gray
-    val textColor = if (isSelected) Color.White else Color(0xFF8B4513)
+    val backgroundColor = if (isSelected) Color(0xFF3E2723) else Color.Gray
+    val textColor = if (isSelected) Color.White else Color(0xFF3E2723)
 
     Box(
         modifier = Modifier
@@ -203,10 +298,12 @@ fun CoffeeCategoryFilterButton(category: String, selectedCategory: String, onCli
         Text(
             text = category,
             color = textColor,
-            style = MaterialTheme.typography.body2,
+            style = MaterialTheme.typography.bodyLarge,
             modifier = Modifier
-                .padding(horizontal = 12.dp, vertical = 8.dp)
+                .padding(
+                    horizontal = 17.dp,
+                    vertical = 10.dp,
+                )
         )
     }
 }
-
