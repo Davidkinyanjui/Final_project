@@ -44,11 +44,24 @@ import androidx.navigation.NavController
 import com.ist.ondemand.R
 import com.ist.ondemand.presentation.MainViewModel
 
+// Added CoffeeItem data class and coffee list
+data class CoffeeItem(
+    val name: String,
+    val amount: String,
+)
+
+val coffees = listOf(
+    CoffeeItem("Espresso", "$2.99"),
+    CoffeeItem("Latte", "$3.49"),
+    CoffeeItem("Cappuccino", "$3.99"),
+    CoffeeItem("Mocha", "$4.49"),
+    CoffeeItem("Americano", "$2.49"),
+)
+
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun ServiceScreen(navController: NavController , vm: MainViewModel) {
+fun ServiceScreen(navController: NavController, vm: MainViewModel) {
     var searchQuery by remember { mutableStateOf("") }
-    val coffees = listOf("Espresso", "Latte", "Cappuccino", "Mocha", "Americano")
     var isSearchActive by remember { mutableStateOf(false) }
     var selectedCategory by remember { mutableStateOf("All") }
     var filteredCoffees by remember { mutableStateOf(coffees) }
@@ -117,12 +130,13 @@ fun ServiceScreen(navController: NavController , vm: MainViewModel) {
                         isSearchActive = true
                     }
             ) {
+                // Updated BasicTextField to TextField
                 BasicTextField(
                     value = searchQuery,
                     onValueChange = {
                         searchQuery = it
                         filteredCoffees = coffees.filter { coffee ->
-                            coffee.contains(searchQuery, ignoreCase = true)
+                            coffee.name.contains(searchQuery, ignoreCase = true)
                         }
                     },
                     keyboardOptions = KeyboardOptions.Default.copy(
@@ -145,16 +159,15 @@ fun ServiceScreen(navController: NavController , vm: MainViewModel) {
 
                 // Add search icon inside the search area
                 Image(
-                    painter = painterResource(id = R.drawable.ic_search), // Replace with your search icon resource
-                    contentDescription = null, // Provide a descriptive content description
+                    painter = painterResource(id = R.drawable.ic_search),
+                    contentDescription = null,
                     modifier = Modifier
                         .padding(8.dp)
                         .size(28.dp),
-                    colorFilter = ColorFilter.tint(color = Color(0xFF3E2723)) // Set the desired color
+                    colorFilter = ColorFilter.tint(color = Color(0xFF3E2723))
                 )
 
             }
-
 
             if (isSearchActive && searchQuery.isNotEmpty()) {
                 Icon(
@@ -177,7 +190,6 @@ fun ServiceScreen(navController: NavController , vm: MainViewModel) {
             fontWeight = FontWeight.Bold,
             color = Color(0xFF3E2723)
         ))
-
 
         Row(
             modifier = Modifier
@@ -207,7 +219,6 @@ fun ServiceScreen(navController: NavController , vm: MainViewModel) {
         }
 
         // Display filtered coffees
-        // Display filtered coffees
         Spacer(modifier = Modifier.height(18.dp))
         Text("Results:")
         Spacer(modifier = Modifier.height(10.dp))
@@ -216,57 +227,61 @@ fun ServiceScreen(navController: NavController , vm: MainViewModel) {
             Text("No results found.")
         } else {
             filteredCoffees.forEach { coffee ->
-                Card(
+                Surface(
+                    elevation = 8.dp, // Set the elevation here
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(8.dp),
-                    elevation = 8.dp
+                        .padding(8.dp)
                 ) {
-                    Column(
-                        modifier = Modifier
-                            .padding(16.dp)
-                            .fillMaxWidth()
+                    Card(
+                        modifier = Modifier.fillMaxWidth(),
                     ) {
-                        // Image at the top
-                        Image(
-                            painter = painterResource(R.drawable.coffee_image), // Replace with your coffee image resource
-                            contentDescription = "Coffee Image",
+                        Column(
                             modifier = Modifier
-                                .height(120.dp)
+                                .padding(16.dp)
                                 .fillMaxWidth()
-                                .clip(shape = RoundedCornerShape(8.dp))
-                                .background(MaterialTheme.colorScheme.background)
-                        )
-
-                        Spacer(modifier = Modifier.height(8.dp))
-
-                        // Name of the coffee
-                        Text(coffee.name, style = MaterialTheme.typography.h6)
-
-                        Spacer(modifier = Modifier.height(4.dp))
-
-                        // Amount of the coffee
-                        Text("Amount: ${coffee.amount}", style = MaterialTheme.typography.body2)
-
-                        Spacer(modifier = Modifier.weight(1f))
-
-                        // "+" button to add to the cart
-                        Row(
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(8.dp),
-                            horizontalArrangement = Arrangement.End
                         ) {
-                            Button(
-                                onClick = { /* Handle button click */ },
-                                modifier = Modifier.padding(8.dp)
+                            // Image at the top
+                            Image(
+                                painter = painterResource(R.drawable.coffee_image),
+                                contentDescription = "Coffee Image",
+                                modifier = Modifier
+                                    .height(120.dp)
+                                    .fillMaxWidth()
+                                    .clip(shape = RoundedCornerShape(8.dp))
+                                    .background(MaterialTheme.colorScheme.background)
+                            )
+
+                            Spacer(modifier = Modifier.height(8.dp))
+
+                            // Name of the coffee
+                            Text(coffee.name, style = MaterialTheme.typography.h6)
+
+                            Spacer(modifier = Modifier.height(4.dp))
+
+                            // Amount of the coffee
+                            Text("Amount: ${coffee.amount}", style = MaterialTheme.typography.body2)
+
+                            Spacer(modifier = Modifier.weight(1f))
+
+                            // "+" button to add to the cart
+                            Row(
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(8.dp),
+                                horizontalArrangement = Arrangement.End
                             ) {
-                                Row(
-                                    verticalAlignment = Alignment.CenterVertically,
-                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                Button(
+                                    onClick = { /* Handle button click */ },
+                                    modifier = Modifier.padding(8.dp)
                                 ) {
-                                    Icon(imageVector = Icons.Default.Add, contentDescription = "Add to Cart")
-                                    Text("Add to Cart")
+                                    Row(
+                                        verticalAlignment = Alignment.CenterVertically,
+                                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                    ) {
+                                        Icon(imageVector = Icons.Default.Add, contentDescription = "Add to Cart")
+                                        Text("Add to Cart")
+                                    }
                                 }
                             }
                         }
