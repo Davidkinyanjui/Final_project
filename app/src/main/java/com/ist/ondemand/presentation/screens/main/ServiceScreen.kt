@@ -228,8 +228,9 @@ fun ServiceScreen(navController: NavController, vm: MainViewModel) {
         } else {
             filteredCoffees.forEach { coffee ->
                 Surface(
-                    elevation = 8.dp, // Set the elevation here
+
                     modifier = Modifier
+
                         .fillMaxWidth()
                         .padding(8.dp)
                 ) {
@@ -252,38 +253,64 @@ fun ServiceScreen(navController: NavController, vm: MainViewModel) {
                                     .background(MaterialTheme.colorScheme.background)
                             )
 
-                            Spacer(modifier = Modifier.height(8.dp))
+                            Spacer(modifier = Modifier.height(10.dp))
 
                             // Name of the coffee
-                            Text(coffee.name, style = MaterialTheme.typography.h6)
-
-                            Spacer(modifier = Modifier.height(4.dp))
+                            Text(
+                                coffee.name,
+                                style = MaterialTheme.typography.bodySmall.copy(
+                                    fontSize = 26.sp, // Increase the font size to 18sp
+                                    fontWeight = FontWeight.Bold,
+                                    color = Color(0xFF3E2723) // Change the color to black or any other color you prefer
+                                )
+                            )
 
                             // Amount of the coffee
-                            Text("Amount: ${coffee.amount}", style = MaterialTheme.typography.body2)
+                            Text(
+                                buildAnnotatedString {
+                                    withStyle(
+                                        style = SpanStyle(
+                                            color = Color.Black,
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 22.sp
+                                        ),
+                                        block = { append("Amount: ") }
+                                    )
+                                    withStyle(
+                                        style = SpanStyle(
+                                            color = Color(0xFF3E2723),
+                                            fontWeight = FontWeight.Bold,
+                                            fontSize = 18.sp
+                                        ),
+                                        block = { append(coffee.amount) }
+                                    )
 
-                            Spacer(modifier = Modifier.weight(1f))
+                                    Row(
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(8.dp),
+                                        horizontalArrangement = Arrangement.End
+                                    ) {
+                                        Button(
+                                            onClick = { /* Handle button click */ },
+                                            modifier = Modifier.padding(8.dp)
+                                        ) {
+                                            Row(
+                                                verticalAlignment = Alignment.CenterVertically,
+                                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                            ) {
+                                                Icon(imageVector = Icons.Default.Add, contentDescription = "Add to Cart")
+                                                Text("Add to Cart")
+                                            }
+                                        }
+                                    }
+                                },
+                                style = MaterialTheme.typography.bodySmall
+                            )
+
 
                             // "+" button to add to the cart
-                            Row(
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(8.dp),
-                                horizontalArrangement = Arrangement.End
-                            ) {
-                                Button(
-                                    onClick = { /* Handle button click */ },
-                                    modifier = Modifier.padding(8.dp)
-                                ) {
-                                    Row(
-                                        verticalAlignment = Alignment.CenterVertically,
-                                        horizontalArrangement = Arrangement.spacedBy(4.dp)
-                                    ) {
-                                        Icon(imageVector = Icons.Default.Add, contentDescription = "Add to Cart")
-                                        Text("Add to Cart")
-                                    }
-                                }
-                            }
+
                         }
                     }
                 }
