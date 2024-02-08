@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
@@ -29,6 +30,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
@@ -226,95 +228,97 @@ fun ServiceScreen(navController: NavController, vm: MainViewModel) {
         if (filteredCoffees.isEmpty()) {
             Text("No results found.")
         } else {
-            filteredCoffees.forEach { coffee ->
-                Surface(
+            LazyColumn{
+                filteredCoffees.forEach { coffee ->
+                    Surface(
 
-                    modifier = Modifier
-
-                        .fillMaxWidth()
-                        .padding(8.dp)
-                ) {
-                    Card(
-                        modifier = Modifier.fillMaxWidth(),
+                        modifier = Modifier
+                            .padding(8.dp)
+                            .shadow(elevation = 4.dp)
                     ) {
-                        Column(
-                            modifier = Modifier
-                                .padding(16.dp)
-                                .fillMaxWidth()
+                        Card(
+                            modifier = Modifier.fillMaxWidth(),
                         ) {
-                            // Image at the top
-                            Image(
-                                painter = painterResource(R.drawable.coffee_image),
-                                contentDescription = "Coffee Image",
+                            Column(
                                 modifier = Modifier
-                                    .height(120.dp)
+                                    .padding(16.dp)
                                     .fillMaxWidth()
-                                    .clip(shape = RoundedCornerShape(8.dp))
-                                    .background(MaterialTheme.colorScheme.background)
-                            )
-
-                            Spacer(modifier = Modifier.height(10.dp))
-
-                            // Name of the coffee
-                            Text(
-                                coffee.name,
-                                style = MaterialTheme.typography.bodySmall.copy(
-                                    fontSize = 26.sp, // Increase the font size to 18sp
-                                    fontWeight = FontWeight.Bold,
-                                    color = Color(0xFF3E2723) // Change the color to black or any other color you prefer
+                            ) {
+                                // Image at the top
+                                Image(
+                                    painter = painterResource(R.drawable.coffee_image),
+                                    contentDescription = "Coffee Image",
+                                    modifier = Modifier
+                                        .height(120.dp)
+                                        .fillMaxWidth()
+                                        .clip(shape = RoundedCornerShape(8.dp))
+                                        .background(MaterialTheme.colorScheme.background)
                                 )
-                            )
 
-                            // Amount of the coffee
-                            Text(
-                                buildAnnotatedString {
-                                    withStyle(
-                                        style = SpanStyle(
-                                            color = Color.Black,
-                                            fontWeight = FontWeight.Bold,
-                                            fontSize = 22.sp
-                                        ),
-                                        block = { append("Amount: ") }
-                                    )
-                                    withStyle(
-                                        style = SpanStyle(
-                                            color = Color(0xFF3E2723),
-                                            fontWeight = FontWeight.Bold,
-                                            fontSize = 18.sp
-                                        ),
-                                        block = { append(coffee.amount) }
-                                    )
+                                Spacer(modifier = Modifier.height(10.dp))
 
-                                    Row(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .padding(8.dp),
-                                        horizontalArrangement = Arrangement.End
-                                    ) {
-                                        Button(
-                                            onClick = { /* Handle button click */ },
-                                            modifier = Modifier.padding(8.dp)
+                                // Name of the coffee
+                                Text(
+                                    coffee.name,
+                                    style = MaterialTheme.typography.bodySmall.copy(
+                                        fontSize = 26.sp, // Increase the font size to 18sp
+                                        fontWeight = FontWeight.Bold,
+                                        color = Color(0xFF3E2723) // Change the color to black or any other color you prefer
+                                    )
+                                )
+
+                                // Amount of the coffee
+                                Text(
+                                    buildAnnotatedString {
+                                        withStyle(
+                                            style = SpanStyle(
+                                                color = Color.Black,
+                                                fontWeight = FontWeight.Bold,
+                                                fontSize = 22.sp
+                                            ),
+                                            block = { append("Amount: ") }
+                                        )
+                                        withStyle(
+                                            style = SpanStyle(
+                                                color = Color(0xFF3E2723),
+                                                fontWeight = FontWeight.Bold,
+                                                fontSize = 18.sp
+                                            ),
+                                            block = { append(coffee.amount) }
+                                        )
+
+                                        Row(
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(8.dp),
+                                            horizontalArrangement = Arrangement.End
                                         ) {
-                                            Row(
-                                                verticalAlignment = Alignment.CenterVertically,
-                                                horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                            Button(
+                                                onClick = { /* Handle button click */ },
+                                                modifier = Modifier.padding(8.dp)
                                             ) {
-                                                Icon(imageVector = Icons.Default.Add, contentDescription = "Add to Cart")
-                                                Text("Add to Cart")
+                                                Row(
+                                                    verticalAlignment = Alignment.CenterVertically,
+                                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                                ) {
+                                                    Icon(imageVector = Icons.Default.Add, contentDescription = "Add to Cart")
+                                                    Text("Add to Cart")
+                                                }
                                             }
                                         }
-                                    }
-                                },
-                                style = MaterialTheme.typography.bodySmall
-                            )
+                                    },
+                                    style = MaterialTheme.typography.bodySmall
+                                )
 
 
-                            // "+" button to add to the cart
+                                // "+" button to add to the cart
 
+                            }
                         }
                     }
                 }
             }
+
         }
 
 
