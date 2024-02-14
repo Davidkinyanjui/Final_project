@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.aspectRatio
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -231,19 +232,23 @@ fun ServiceScreen(navController: NavController, vm: MainViewModel) {
         if (filteredCoffees.isEmpty()) {
             Text("No results found.")
         } else {
-            LazyVerticalGrid(cells = GridCells.Fixed(2)){
+            LazyColumn{
                 filteredCoffees.forEach { coffee ->
                     item {
                         Surface(
-
+                            color = Color(0xFFF5E1CB),
+                            shape = RoundedCornerShape(8.dp),
                             modifier = Modifier
                                 .padding(8.dp)
-                                .shadow(elevation = 4.dp)
+                                .shadow(elevation = 6.dp)
                         ) {
                             Card(
                                 modifier = Modifier
                                     .height(190.dp) // Set the height
                                     .width(170.dp)  // Set the width
+                                    .clickable {
+                                        //handle on click
+                                    }
                             ) {
                                 Column(
                                     modifier = Modifier
@@ -251,15 +256,18 @@ fun ServiceScreen(navController: NavController, vm: MainViewModel) {
                                 ) {
                                     // Image at the top
                                     Image(
-                                        painter = painterResource(R.drawable.coffee_image),
+                                        painter = painterResource(R.drawable.logo),
                                         contentDescription = "Coffee Image",
                                         modifier = Modifier
                                             .height(60.dp)
                                             .height(90.dp) // Set the height
                                             .width(70.dp)  // Set the width
                                             .clip(shape = RoundedCornerShape(8.dp))
-                                            .background(MaterialTheme.colorScheme.background)
+                                            .padding(bottom = 2.dp)
+                                            .align(Alignment.CenterHorizontally)
+
                                     )
+
 
                                     Spacer(modifier = Modifier.height(10.dp))
 
