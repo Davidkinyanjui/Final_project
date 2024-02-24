@@ -138,7 +138,7 @@ fun ServiceScreen(navController: NavController, vm: MainViewModel) {
             ) {
                 // Updated BasicTextField to TextField
                 BasicTextField(
-                    value = searchQuery,
+                    value = if (searchQuery.isEmpty()) "What Coffee Do you Like?..." else searchQuery,
                     onValueChange = {
                         searchQuery = it
                         filteredCoffees = coffees.filter { coffee ->
@@ -153,25 +153,22 @@ fun ServiceScreen(navController: NavController, vm: MainViewModel) {
                         isSearchActive = false
                     }),
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .width(250.dp)
                         .border(
                             width = 2.dp,
                             color = Color(0xFF3E2723), // Coffee brown color
-                            shape = RoundedCornerShape(33.dp)
+                            shape = RoundedCornerShape(16.dp) // Adjusted corner radius
                         )
-                        .padding(8.dp)
-                        .size(30.dp),
+                        .padding(12.dp)
+                        .height(26.dp), // Adjusted height
+                    textStyle = LocalTextStyle.current.copy(
+                        color = Color(0xFF3E2723),
+                        fontSize = 15.sp,
+                        fontWeight = FontWeight.Bold
+                    )
                 )
 
-                // Add search icon inside the search area
-                Image(
-                    painter = painterResource(id = R.drawable.ic_search),
-                    contentDescription = null,
-                    modifier = Modifier
-                        .padding(8.dp)
-                        .size(28.dp),
-                    colorFilter = ColorFilter.tint(color = Color(0xFF3E2723))
-                )
+
 
             }
 
@@ -230,7 +227,21 @@ fun ServiceScreen(navController: NavController, vm: MainViewModel) {
         Spacer(modifier = Modifier.height(10.dp))
 
         if (filteredCoffees.isEmpty()) {
-            Text("No results found.")
+            Card(
+                modifier = Modifier
+                    .padding(50.dp)
+                    .fillMaxWidth()
+            ) {
+                Text(
+                    text = "Sorry No Coffee Found!!",
+                    style = MaterialTheme.typography.bodySmall.copy(
+                        fontSize = 20.sp, // Increase the font size to 20sp
+                        fontWeight = FontWeight.Bold,
+                        color = Color.Red // Change the color to black or any other color you prefer
+                    ),
+                    modifier = Modifier.padding(16.dp)
+                )
+            }
         } else {
             LazyColumn{
                 filteredCoffees.forEach { coffee ->
@@ -315,11 +326,6 @@ fun ServiceScreen(navController: NavController, vm: MainViewModel) {
                                         }
 
                                     }
-
-
-
-                                    // "+" button to add to the cart
-
                                 }
                             }
                         }
@@ -330,11 +336,18 @@ fun ServiceScreen(navController: NavController, vm: MainViewModel) {
 
         }
 
+        Box(
+            modifier = Modifier
+                .fillMaxWidth()
+               // .bottomLink()
+        ) {
+            BottomNavigationMenu(
+                selectedItem = BottomNavigationItem.SERVICES,
+                navController = navController
+            )
+        }
 
-        BottomNavigationMenu(
-            selectedItem = BottomNavigationItem.SERVICES,
-            navController = navController
-        )
+
     }
 }
 

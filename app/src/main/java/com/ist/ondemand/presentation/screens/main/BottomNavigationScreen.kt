@@ -29,7 +29,7 @@ import com.ist.ondemand.presentation.common.navigateTo
  */
 enum class BottomNavigationItem(val icon: Int, val navDestination: Routes) {
    SERVICES(R.drawable.ic_home, Routes.Services),
-    SEARCH(R.drawable.ic_search, Routes.Search),
+    SEARCH(R.drawable.ic_cart, Routes.Search),
     PROFILE(R.drawable.ic_posts,Routes.Profile),
 }
 
