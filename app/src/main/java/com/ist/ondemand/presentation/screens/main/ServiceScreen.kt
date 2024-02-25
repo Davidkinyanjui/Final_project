@@ -57,12 +57,13 @@ data class CoffeeItem(
 )
 
 val coffees = listOf(
-    CoffeeItem("Espresso", "$2.99"),
-    CoffeeItem("Latte", "$3.49"),
-    CoffeeItem("Cappuccino", "$3.99"),
-    CoffeeItem("Mocha", "$4.49"),
-    CoffeeItem("Americano", "$2.49"),
+    CoffeeItem(1, "Espresso", "$2.99"),
+    CoffeeItem(2, "Latte", "$3.49"),
+    CoffeeItem(3, "Cappuccino", "$3.99"),
+    CoffeeItem(4, "Mocha", "$4.49"),
+    CoffeeItem(5, "Americano", "$2.49"),
 )
+
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
@@ -222,7 +223,7 @@ fun ServiceScreen(navController: NavController, vm: MainViewModel) {
         }
 
         // Display filtered coffees
-        Spacer(modifier = Modifier.height(18.dp))
+        Spacer(modifier = Modifier.height(20.dp))
         Text("Results:")
         Spacer(modifier = Modifier.height(10.dp))
 
@@ -339,7 +340,7 @@ fun ServiceScreen(navController: NavController, vm: MainViewModel) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
-               // .bottomLink()
+                .bottomLink()
         ) {
             BottomNavigationMenu(
                 selectedItem = BottomNavigationItem.SERVICES,
