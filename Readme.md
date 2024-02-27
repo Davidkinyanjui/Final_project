@@ -85,7 +85,8 @@ Coffee shop app is an app that will revolutionizes your caffeine experience by e
 
 ## 💻 Getting Started <a name="getting-started"></a>
 
-> Describe how a new developer could make use of your project.
+> Educational Purposes: New developers can study my codebase to learn about Jetpack Compose, Firebase integration, and modern Android development practices.
+> Practice Project: Use it as a practice project to improve their skills in Kotlin, UI design, and backend integration.
 
 To get a local copy up and running, follow these steps.
 
@@ -93,26 +94,18 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need:
 
-<!--
-Example command:
+- Ensure you have Android Studio installed on your machine. If not, download and install it from the official website.
 
-```sh
- gem install rails
-```
- -->
+- Make sure you have Git installed to clone the repository.
 
 ### Setup
 
-Clone this repository to your desired folder:
+-Open a terminal or command prompt.
 
-<!--
-Example commands:
+-Navigate to the directory where you want to store your project.
 
-```sh
-  cd my-folder
-  git clone git@github.com:myaccount/my-project.git
-```
---->
+-Run the following command to clone your repository:
+  git clone https://github.com/Davidkinyanjui/Final_project
 
 ### Install
 
