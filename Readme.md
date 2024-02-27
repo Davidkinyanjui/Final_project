@@ -231,7 +231,7 @@ When Deploying your app on the Google Play Console it will involves several step
 
 - GitHub: [@githubhandle](https://github.com/Davidkinyanjui/)
 - Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/david-kinyanjui-software-developer/)
 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -304,7 +304,5 @@ I would like to thank my supervisor Mr.Baricho, for helping me start this projec
 ## 📝 License <a name="license"></a>
 
 This project is [MIT](./LICENSE) licensed.
-
-_NOTE: we recommend using the [MIT license](https://choosealicense.com/licenses/mit/) 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
