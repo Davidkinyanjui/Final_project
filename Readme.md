@@ -181,6 +181,46 @@ You can deploy this project using:
   - Once you’re satisfied, consider publishing it to the Google Play Store.
 
 
+When Deploying your app on the Google Play Console it will involves several steps. Let’s walk through them:
+
+1 Create a Google Developer Account:
+  - If you haven’t already, create a Google Play Developer account by paying a one-time fee of $25.
+  - Navigate to the Google Play Console.
+    
+2 Create Your App:
+  - Log in to the Google Play Console.
+  - Select “All apps” and click “Create app”.
+  - Choose a default language and provide the name of your app as you want it to appear on Google Play.
+  - Specify whether your app is an app or a game, and whether it’s free or paid.
+  - Add an email address for user inquiries related to your app.
+
+3 Set Up Your App:
+  - After creating your app, you’ll be guided through essential steps:
+  - Content Details: Provide information about your app’s content.
+  - Store Listing: Enter details like app description, screenshots, and promotional graphics.
+  - App Release: Manage pre-release testing, version management, and promotion.
+  - Launch Your App: Make your app available to users on Google Play.
+
+4 Upload Your App Bundle:
+  - Build an Android App Bundle (AAB) using Android Studio.
+  - Sign the release version of your app.
+  - Upload the AAB to the Google Play Console.
+  - Google Play will generate APKs optimized for different device configurations.
+
+5 Test Your App Internally:
+  - Use the app bundle explorer in the Play Console to inspect APKs generated from your bundle.
+  - Test your app on different devices and configurations.
+
+6 Publish Your App:
+  - Once you’re satisfied with testing, click “Review” in the Play Console.
+  - Review your app’s details and settings.
+  - Click “Start rollout to production” to publish your app.
+
+7 Monitor and Update:
+  - Regularly check the Play Console for user reviews, ratings, and any issues.
+  - Update your app as needed, fix bugs, and enhance features.
+
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- AUTHORS -->
@@ -225,9 +265,13 @@ Feel free to check the [issues page](../../issues/).
 If you’ve enjoyed exploring our coffee shop app built with Kotlin, Jetpack Compose, and Firebase, we’d greatly appreciate your support. Here’s how you can contribute:
 
 (A) Star the Repository: Show your love by clicking the ⭐️ button at the top of the repository. It helps us gain visibility and motivates us to keep improving the app.
+
 (B) Fork and Contribute: If you’re passionate about Android development, feel free to fork the repository, make enhancements, and submit pull requests. Every contribution counts!
+
 (C) Spread the Word: Share our project with fellow coffee enthusiasts, developers, and friends. Let them know about the delightful coffee experience our app offers.
+
 (D) Report Issues: Found a bug or have an idea for a new feature? Open an issue on GitHub. Your feedback helps us refine the app.
+
 (E) Buy Us a Virtual Coffee: While we can’t serve you a physical cup of coffee, consider supporting us by buying us a virtual coffee to keep the code brewing! ☕❤️
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
