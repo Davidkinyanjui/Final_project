@@ -36,26 +36,26 @@ Coffee shop app is an app that will revolutionizes your caffeine experience by e
 
 ### Tech Stack <a name="tech-stack"></a>
 
-> Describe the tech stack and include only the relevant sections that apply to your project.
+
 
 <details>
   <summary>Client</summary>
   <ul>
-    <li><a href="https://reactjs.org/">React.js</a></li>
+    <li><a href="/"> Kotlin and Jetpack Compose.</a></li>
   </ul>
 </details>
 
 <details>
   <summary>Server</summary>
   <ul>
-    <li><a href="https://expressjs.com/">Express.js</a></li>
+    <li><a href="/">Firebase.</a></li>
   </ul>
 </details>
 
 <details>
 <summary>Database</summary>
   <ul>
-    <li><a href="https://www.postgresql.org/">PostgreSQL</a></li>
+    <li><a href="/">Firebase Realtime</a></li>
   </ul>
 </details>
 
@@ -63,11 +63,11 @@ Coffee shop app is an app that will revolutionizes your caffeine experience by e
 
 ### Key Features <a name="key-features"></a>
 
-> Describe between 1-3 key features of the application.
 
-- **[key_feature_1]**
-- **[key_feature_2]**
-- **[key_feature_3]**
+
+- **[Search for different coffees]**
+- **[Add to Cart]**
+- **[Profile Section]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -75,7 +75,7 @@ Coffee shop app is an app that will revolutionizes your caffeine experience by e
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-> Add a link to your deployed project.
+> Still working on it, Once it is done I will share the link
 
 - [Live Demo Link](https://google.com)
 
@@ -169,19 +169,12 @@ Example:
 
 ## 👥 Authors <a name="authors"></a>
 
-> Mention all of the collaborators of this project.
+👤 **David Kinyanjui Nyaga**
 
-👤 **Author1**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
+- GitHub: [@githubhandle](https://github.com/Davidkinyanjui/)
 - Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
 - LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
-👤 **Author2**
-
-- GitHub: [@githubhandle](https://github.com/githubhandle)
-- Twitter: [@twitterhandle](https://twitter.com/twitterhandle)
-- LinkedIn: [LinkedIn](https://linkedin.com/in/linkedinhandle)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -189,11 +182,9 @@ Example:
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-> Describe 1 - 3 features you will add to the project.
 
-- [ ] **[new_feature_1]**
-- [ ] **[new_feature_2]**
-- [ ] **[new_feature_3]**
+- [ ] **[Maps]**
+- [ ] **[Intergrate payment system]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -221,9 +212,7 @@ If you like this project...
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-> Give credit to everyone who inspired your codebase.
-
-I would like to thank...
+I would like to thank my supervisor Mr.Baricho, for helping me start this project and still continuing to guide me as I continue working on this project, and also Chat GPT and Stack Overflow for helping me solve most of my errors 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -231,15 +220,14 @@ I would like to thank...
 
 ## ❓ FAQ (OPTIONAL) <a name="faq"></a>
 
-> Add at least 2 questions new developers would ask when they decide to use your project.
 
-- **[Question_1]**
+- **[Do you have to Log in again and again in the app]**
 
-  - [Answer_1]
+  - [No, once you log in you're not required to log in again, Unless you log out. ]
 
-- **[Question_2]**
+- **[Where can I find your shop??]**
 
-  - [Answer_2]
+  - [We are working on intergrating a map to our application to make it easy for all customers to track where all our shops are Located.]
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
