@@ -15,7 +15,7 @@
   - [Prerequisites](#prerequisites)
   - [Setup](#setup)
   - [Install](#install)
-  - [Usage](#usage)
+  - [Configure Firebase](#configure)
   - [Run tests](#run-tests)
   - [Deployment](#deployment)
 - [👥 Authors](#authors)
@@ -86,6 +86,7 @@ Coffee shop app is an app that will revolutionizes your caffeine experience by e
 ## 💻 Getting Started <a name="getting-started"></a>
 
 > Educational Purposes: New developers can study my codebase to learn about Jetpack Compose, Firebase integration, and modern Android development practices.
+
 > Practice Project: Use it as a practice project to improve their skills in Kotlin, UI design, and backend integration.
 
 To get a local copy up and running, follow these steps.
@@ -110,51 +111,75 @@ In order to run this project you need:
 ### Install
 
 Install this project with:
+  - Launch Android Studio.
+  - Click on “Open an existing Android Studio project” or “File” > “Open”.
+  - Select the directory where you cloned your repository.
 
-<!--
-Example command:
 
-```sh
-  cd my-project
-  gem install
-```
---->
+### Configure Firebase
 
-### Usage
+To Configure Firebase, do the following:
+  - If you haven’t already, create a Firebase project on the Firebase Console.
+  - Add your Android app to the project and follow the setup instructions.
+  - Download the google-services.json file from Firebase and place it in the app module of your project.
 
-To run the project, execute the following command:
+Build and Run:
+  - Wait for Android Studio to sync the project and download necessary dependencies.
+  - Connect an Android device (physical device or emulator) to your computer.
+  - Click the “Run” button (green triangle) in Android Studio to build and install the app on your device.
+  -Choose the target device when prompted.
 
-<!--
-Example command:
+Explore the App:
+  - Once the app is installed, open it on your device.
+  - Navigate through the screens, explore the coffee menu, and place sample orders.
+  - Test features like authentication (if implemented), database interactions, and UI responsiveness.
+    
+Customization:
+  - Customize the app by adding your coffee shop’s branding, logo, and colors.
+  - Update the menu items, descriptions, and prices to match your actual coffee shop offerings.
 
-```sh
-  rails server
-```
---->
+Learn and Modify:
+  - Study the codebase to understand how Jetpack Compose components are used.
+  - Explore ViewModel architecture, navigation, and Firebase integration.
+  - Make modifications as needed for your specific use case.
+
 
 ### Run tests
 
-To run tests, run the following command:
+To run tests, do the following command:
 
-<!--
-Example command:
+- Write unit tests and UI tests to ensure the app’s functionality works as 
+   expected.
 
-```sh
-  bin/rails test test/models/article_test.rb
-```
---->
+- Use tools like JUnit and Espresso for testing.
+
+- Unit tests focus on testing individual components or functions in isolation. Here’s how to write and run unit tests for your app:
+
+Create a Test Class:
+   - In your project, create a new directory (usually named test) under the src folder.
+   - Inside this directory, create a Kotlin class for your unit tests. For example, CoffeeShopViewModelTest.
+     
+Write Test Methods:
+   - Define test methods within your test class.
+   - Use JUnit annotations (@Test, @Before, @After, etc.) to set up and execute tests.
+   - Test various scenarios, such as ViewModel logic, data transformations, or utility functions.
+     
+Mock Dependencies:
+   - Use mock objects or dependency injection to isolate the component you’re testing.
+   - For example, if you’re testing a ViewModel, mock the repository or data source.
+     
+Run Tests:
+   - Right-click on your test class and select “Run” to execute the tests.
+   - Observe the test results in the Android Studio console.
+     
 
 ### Deployment
 
 You can deploy this project using:
+  - Deploy your app to an emulator or a physical device for testing.
+    
+  - Once you’re satisfied, consider publishing it to the Google Play Store.
 
-<!--
-Example:
-
-```sh
-
-```
- -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -197,7 +222,13 @@ Feel free to check the [issues page](../../issues/).
 
 > Write a message to encourage readers to support your project
 
-If you like this project...
+If you’ve enjoyed exploring our coffee shop app built with Kotlin, Jetpack Compose, and Firebase, we’d greatly appreciate your support. Here’s how you can contribute:
+
+(A) Star the Repository: Show your love by clicking the ⭐️ button at the top of the repository. It helps us gain visibility and motivates us to keep improving the app.
+(B) Fork and Contribute: If you’re passionate about Android development, feel free to fork the repository, make enhancements, and submit pull requests. Every contribution counts!
+(C) Spread the Word: Share our project with fellow coffee enthusiasts, developers, and friends. Let them know about the delightful coffee experience our app offers.
+(D) Report Issues: Found a bug or have an idea for a new feature? Open an issue on GitHub. Your feedback helps us refine the app.
+(E) Buy Us a Virtual Coffee: While we can’t serve you a physical cup of coffee, consider supporting us by buying us a virtual coffee to keep the code brewing! ☕❤️
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
